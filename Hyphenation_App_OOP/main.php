@@ -1,29 +1,37 @@
 <?php
 
-use Hyphenation_App_OOP\Classes\Side_Functions\Timer;
-use Hyphenation_App_OOP\Classes\Algorithm\PatternDataToArray;
-use Hyphenation_App_OOP\Classes\Algorithm\Hyphenation;
+use Hyphenation_App_OOP\Classes\Side_Functions\Database;
+//use Hyphenation_App_OOP\Classes\Side_Functions\Timer;
+//use Hyphenation_App_OOP\Classes\Algorithm\PatternDataToArray;
+//use Hyphenation_App_OOP\Classes\Algorithm\Hyphenation;
 
 
-include ('Classes/Side_Functions/Timer.php');
-include ('Classes/Algorithm/PatternDataToArray.php');
-include ('Classes/Algorithm/Hyphenation.php');
+include ('Classes/Side_Functions/Database.php');
+//include ('Classes/Side_Functions/Timer.php');
+//include ('Classes/Algorithm/PatternDataToArray.php');
+//include ('Classes/Algorithm/Hyphenation.php');
 
-$time = new Timer();
 
-$patternList = new PatternDataToArray();
-$wordToTestList = new PatternDataToArray();
+$connection = new Database();
 
-$wordToHyphen = new Hyphenation();
-$hyphenTheWord = new Hyphenation();
+//$time = new Timer();
+//
+//$patternList = new PatternDataToArray();
+//$wordToTestList = new PatternDataToArray();
 
-$patternList->setPatternFileLocation('Resources/pattern_data.txt');
-$patternList->getPatternData();
-$wordToTestList->setWordsToTestFileLocation('Resources/words.txt');
-$wordToTestList->getWordsToTestData();
+$connection->uploadPatterns('Resources/pattern_data.txt');
+//$connection->uploadWords('Resources/words.txt');
 
-$wordToHyphen->setWordToHyphenate();
-$wordToHyphen->getWordToHyphenate();
-echo $hyphenTheWord->parseWord($wordToHyphen->getWordToHyphenate(),$patternList->getPatternData());
+//$wordToHyphen = new Hyphenation();
+//$hyphenTheWord = new Hyphenation();
+//
+//$patternList->setPatternFileLocation('Resources/pattern_data.txt');
+//$patternList->getPatternData();
+//$wordToTestList->setWordsToTestFileLocation('Resources/words.txt');
+//$wordToTestList->getWordsToTestData();
+//
+//$wordToHyphen->setWordToHyphenate();
+//$wordToHyphen->getWordToHyphenate();
+//echo $hyphenTheWord->parseWord($wordToHyphen->getWordToHyphenate(),$patternList->getPatternData());
 
-$time->printRunningDuration();
+//$time->printRunningDuration();
