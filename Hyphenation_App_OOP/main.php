@@ -1,15 +1,31 @@
 <?php
 //
 //use Hyphenation_App_OOP\Classes\Side_Functions\Database;
-use Hyphenation_App_OOP\Classes\Side_Functions\Timer;
-use Hyphenation_App_OOP\Classes\Algorithm\PatternDataToArray;
-use Hyphenation_App_OOP\Classes\Algorithm\Hyphenation;
+use Classes\Side_Functions\Timer;
+use Classes\Side_Functions\Logger;
+use Classes\Algorithm\PatternDataToArray;
+use Classes\Algorithm\Hyphenation;
 
 
 //include ('Classes/Side_Functions/Database.php');
-include('Classes/Side_Functions/Timer.php');
-include('Classes/Algorithm/PatternDataToArray.php');
-include('Classes/Algorithm/Hyphenation.php');
+//include('Classes/Side_Functions/Timer.php');
+//include('Psr/Log/AbstractLogger.php');
+//include('Classes/Side_Functions/Logger.php');
+//include('Classes/Algorithm/PatternDataToArray.php');
+//include('Classes/Algorithm/Hyphenation.php');
+
+spl_autoload_register(function ($class) {
+
+    $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+
+    if (file_exists($file)) {
+
+        require $file;
+
+        return true;
+    }
+    return false;
+});
 
 
 //$connection = new Database();
@@ -46,6 +62,8 @@ switch ($argv[1]) {
 
         $time = new Timer();
 
+        $log = new Logger();
+
         $patternList = new PatternDataToArray();
 
         $wordToHyphen = new Hyphenation();
@@ -58,9 +76,12 @@ switch ($argv[1]) {
         $wordToHyphen->setWordToHyphenate();
         $wordToHyphen->getWordToHyphenate();
 
-        $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData());
+        echo $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData());
 
         $time->printRunningDuration();
+
+        $log->log("\nWord to hyphenate: ".$wordToHyphen->getWordToHyphenate(), "Hyphenated word: ".$hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData()));
+        $log->logTime($time->getRunningDuration());
 
         break;
 

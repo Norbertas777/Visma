@@ -1,0 +1,12 @@
+
+Word to hyphenate: mistranslate 
+Hyphenated word: mis-trans-late
+Executed in 2.8328568935394 seconds.
+
+Word to hyphenate: buttons 
+Hyphenated word: but-ton-s
+Executed in 3.8448519706726 seconds.
+
+Word to hyphenate: mistranslate 
+Hyphenated word: mis-trans-late
+Executed in 4.8366410732269 seconds.

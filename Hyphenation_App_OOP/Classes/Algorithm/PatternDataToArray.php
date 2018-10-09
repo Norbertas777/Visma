@@ -6,7 +6,7 @@
  * Time: 15.19
  */
 //
-namespace Hyphenation_App_OOP\Classes\Algorithm;
+namespace Classes\Algorithm;
 
 
 class PatternDataToArray

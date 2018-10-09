@@ -6,10 +6,40 @@
  * Time: 16.59
  */
 
-namespace Hyphenation_App_OOP\Classes\Side_Functions;
+namespace Classes\Side_Functions;
+
+use Psr\Log\AbstractLogger;
 
 
-class Logger
+class Logger extends AbstractLogger
 {
 
+    private $log;
+
+    public function __construct()
+    {
+        $this->log = fopen('log.txt', 'a');
+    }
+
+    public function __destruct()
+    {
+        fclose($this->log);
+    }
+
+    public function log($level, $message, array $context = array())
+    {
+        fwrite($this->log, "$level \n");
+        fwrite($this->log, "$message");
+    }
+
+    public function setLog($time, $myword)
+    {
+        fwrite($this->log, $time);
+        fwrite($this->log, "$myword");
+    }
+
+    public function logTime($time)
+    {
+        fwrite($this->log, $time);
+    }
 }

@@ -6,7 +6,7 @@
  * Time: 16.59
  */
 
-namespace Hyphenation_App_OOP\Classes\Side_Functions;
+namespace Classes\Side_Functions;
 
 
 class Timer

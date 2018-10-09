@@ -7,7 +7,7 @@
  */
 //
 //
-namespace Hyphenation_App_OOP\Classes\Algorithm;
+namespace Classes\Algorithm;
 
 class Hyphenation extends PatternDataToArray
 {
@@ -82,7 +82,7 @@ class Hyphenation extends PatternDataToArray
         $word_num_arrr = $this->parseWordNums($word_to_analyze, $pattern_arr);
 
 
-        echo $this->getHyphenatedWord($word_num_arrr, $word_to_analyze);
+        return $this->getHyphenatedWord($word_num_arrr, $word_to_analyze);
     }
 
     public function parseWordNums($word_to_analyze, $pattern_arr)
