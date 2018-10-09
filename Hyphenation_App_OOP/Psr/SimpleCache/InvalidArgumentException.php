@@ -1,6 +1,6 @@
 <?php
 
-namespace Hyphenation_App_OOP\Psr\SimpleCache;
+namespace Psr\SimpleCache;
 /**
  * Exception interface for invalid cache arguments.
  *

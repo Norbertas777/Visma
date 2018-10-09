@@ -17,8 +17,6 @@ class Hyphenation extends PatternDataToArray
     public $wordToHyphenateDots;
 
 
-
-
     public function setPatternToLettersOnly($pattern)
     {
 
@@ -37,11 +35,8 @@ class Hyphenation extends PatternDataToArray
 
     public function setWordToHyphenate()
     {
-
         $wordEntered[] = readline("Enter your word to hyphenate:");
-
-        $this->wordToHyphenate = implode("",$wordEntered);
-
+        $this->wordToHyphenate = implode("", $wordEntered);
 
     }
 
@@ -49,7 +44,6 @@ class Hyphenation extends PatternDataToArray
     {
 
         return $this->wordToHyphenate;
-
 
     }
 
@@ -81,7 +75,6 @@ class Hyphenation extends PatternDataToArray
         $word_to_analyze = $this->prepareWordForAnalyze($wordToHyphenate);
         $word_num_arrr = $this->parseWordNums($word_to_analyze, $pattern_arr);
 
-
         return $this->getHyphenatedWord($word_num_arrr, $word_to_analyze);
     }
 
@@ -89,13 +82,11 @@ class Hyphenation extends PatternDataToArray
     {
 
         $word_length = strlen($word_to_analyze);
-
         $word_num_arr = array_fill(0, $word_length, null);
 
         foreach ($pattern_arr as $pattern) {
 
             $plain_pattern = preg_replace('/[^A-Za-z.]/', '', $pattern);
-
             $pattern_begin_pos = strpos($word_to_analyze, $plain_pattern);
 
             if ($pattern_begin_pos === false) {
@@ -132,17 +123,17 @@ class Hyphenation extends PatternDataToArray
 
     public function prepareWordForAnalyze($wordToHyphenate)
     {
-        $this->wordToHyphenateDots = '.'.$wordToHyphenate.'.';
+        $this->wordToHyphenateDots = '.' . $wordToHyphenate . '.';
 
         return $this->wordToHyphenateDots;
     }
 
-    public function echoManyHyphenatedWords($words_arr,$pattern_arr)
+    public function echoManyHyphenatedWords($words_arr, $pattern_arr)
     {
 
-        foreach($words_arr as $word){
+        foreach ($words_arr as $word) {
 
-            echo $this->echoHyphenatedWord($word,$pattern_arr)."\n";
+            return $this->echoHyphenatedWord($word, $pattern_arr) . "\n";
         }
 
     }

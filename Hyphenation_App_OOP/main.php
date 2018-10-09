@@ -2,6 +2,7 @@
 //
 //use Hyphenation_App_OOP\Classes\Side_Functions\Database;
 use Classes\Side_Functions\Timer;
+use Classes\Side_Functions\Cache;
 use Classes\Side_Functions\Logger;
 use Classes\Algorithm\PatternDataToArray;
 use Classes\Algorithm\Hyphenation;
@@ -35,32 +36,50 @@ switch ($argv[1]) {
 
         $time = new Timer();
 
+        $cache = new Cache('Cache.txt');
+
         $patternList = new PatternDataToArray();
         $wordToTestList = new PatternDataToArray();
-
 
         $wordToHyphen = new Hyphenation();
         $hyphenateTheWord = new Hyphenation();
         $hyphenateManyWords = new Hyphenation();
 
-        $patternList->setPatternFileLocation('Resources/pattern_data.txt');
-        $patternList->getPatternData();
         $wordToTestList->setWordsToTestFileLocation('Resources/words.txt');
         $wordToTestList->getWordsToTestData();
 
-        $wordToHyphen->setWordToHyphenate();
-        $wordToHyphen->getWordToHyphenate();
+        foreach ($wordToTestList->getWordsToTestData() as $wor) {
+            if ($cache->get($wor) !== false) {
+                echo $cache->get($wor) . "\r\n";
+            } else {
 
+                $patternList->setPatternFileLocation('Resources/pattern_data.txt');
+                $patternList->getPatternData();
+                $wordToTestList->setWordsToTestFileLocation('Resources/words.txt');
+                $wordToTestList->getWordsToTestData();
 
-        $hyphenateManyWords->echoManyHyphenatedWords($wordToTestList->getWordsToTestData(), $patternList->getPatternData());
+                $wordToHyphen->setWordToHyphenate();
+                $wordToHyphen->getWordToHyphenate();
 
-        $time->printRunningDuration();
+                $hyphenateManyWords->echoManyHyphenatedWords($wordToTestList->getWordsToTestData(), $patternList->getPatternData());
 
+                foreach ($wordToTestList->getWordsToTestData() as $word) {
+
+                    $cache->set($word, $hyphenateTheWord->echoHyphenatedWord($word, $patternList->getPatternData()));
+
+                }
+                $time->printRunningDuration();
+
+            }
+        }
         break;
+
 
     case "-word":
 
         $time = new Timer();
+
+        $cache = new Cache('Cache.txt');
 
         $log = new Logger();
 
@@ -69,21 +88,33 @@ switch ($argv[1]) {
         $wordToHyphen = new Hyphenation();
         $hyphenateTheWord = new Hyphenation();
 
-
-        $patternList->setPatternFileLocation('Resources/pattern_data.txt');
-        $patternList->getPatternData();
-
         $wordToHyphen->setWordToHyphenate();
         $wordToHyphen->getWordToHyphenate();
 
-        echo $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData());
+        if ($cache->get($wordToHyphen->getWordToHyphenate()) !== false) {
+            echo $cache->get($wordToHyphen->getWordToHyphenate()) . "\r\n";
 
-        $time->printRunningDuration();
+        } else {
 
-        $log->log("\nWord to hyphenate: ".$wordToHyphen->getWordToHyphenate(), "Hyphenated word: ".$hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData()));
-        $log->logTime($time->getRunningDuration());
+            $patternList->setPatternFileLocation('Resources/pattern_data.txt');
+            $patternList->getPatternData();
+
+            $wordToHyphen->setWordToHyphenate();
+            $wordToHyphen->getWordToHyphenate();
+
+            echo $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData());
+
+            $time->printRunningDuration();
+
+            $cache->set($wordToHyphen->getWordToHyphenate(), $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData()));
+
+            $log->log("\nWord to hyphenate: " . $wordToHyphen->getWordToHyphenate(), "Hyphenated word: " . $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternList->getPatternData()));
+            $log->logTime($time->getRunningDuration());
+
+        }
 
         break;
 
 
 }
+

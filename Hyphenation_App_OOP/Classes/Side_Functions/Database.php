@@ -6,7 +6,7 @@
  * Time: 12.45
  */
 
-namespace Hyphenation_App_OOP\Classes\Side_Functions;
+namespace Classes\Side_Functions;
 
 class Database
 {
@@ -52,7 +52,7 @@ class Database
 
     }
 
-        public function uploadWords($location)
+    public function uploadWords($location)
     {
         $words = explode("\n", file_get_contents($location));
 
