@@ -8,63 +8,93 @@
 
 namespace Classes\Side_Functions;
 
-class Database
+use PDO;
+use PDOException;
+
+class Database implements DatabaseInterface
 {
 
-    public $pdo;
-
+    private $conn;
 
     public function __construct()
     {
+        require_once ('Config.php');
 
-        $host = '127.0.0.1';
-        $db = 'hyphenation';
-        $user = 'root';
-        $pass = 'password';
-        $charset = 'utf8mb4';
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-        $options = [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-            \PDO::ATTR_EMULATE_PREPARES => false,
-        ];
         try {
-            $this->pdo = new \PDO($dsn, $user, $pass, $options);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+
+            $this->conn = new PDO("mysql:host=$localhost;dbname=$database", $user, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
         }
     }
 
-
-    public function uploadPatterns($location)
+    public function __destruct()
     {
-        $patterns = explode("\n", file_get_contents($location));
-
-        foreach ($patterns as $patternToInsert) {
-
-            $query = $this->pdo->prepare("INSERT INTO pattern_table (pattern) VALUE (:pattern)");
-
-            $query->bindParam(':pattern', $patternToInsert);
-
-            $query->execute();
-
-        }
-
+        $this->conn = null;
     }
-
-    public function uploadWords($location)
+    public function connect()
     {
-        $words = explode("\n", file_get_contents($location));
+        return $this->conn;
+    }
 
-        foreach ($words as $wordToInsert) {
+    public function insertMany($tableName,$tableRowName,$dataToInstert)
+    {
 
-            $query = $this->pdo->prepare("INSERT INTO words_table (word) VALUE (:word)");
+        foreach($dataToInstert as $dataElement) {
 
-            $query->bindParam(':word', $wordToInsert);
-
-            $query->execute();
-
+            $query = "INSERT INTO $tableName($tableRowName) VALUES (:pattern)";
+            $stm = $this->conn->prepare($query);
+            $stm->bindParam(':pattern', $dataElement);
+            $stm->execute();
         }
+    }
+
+    public function insert($tableName,$tableRowName,$dataToInstert)
+    {
+            $query = "INSERT INTO $tableName($tableRowName) VALUES (:pattern)";
+            $stm = $this->conn->prepare($query);
+            $stm->bindParam(':pattern', $dataToInstert);
+            $stm->execute();
 
     }
+
+    public function select($selectWhat = "*", $tableName, $par = null)
+    {
+        $query = "SELECT $selectWhat FROM $tableName $par";
+        $stm = $this->conn->query($query)->fetchAll();
+
+        return $stm;
+    }
+
+    public function selectWhere($selectWhat = "*", $tableName,$where,$what, $par = null)
+    {
+        $query = "SELECT $selectWhat FROM $tableName WHERE $where='$what' $par";
+        $stm = $this->conn->query($query)->fetchAll();
+
+        return $stm;
+    }
+
+    public function delete($tableName, $where)
+    {
+        $query = "DELETE FROM $tableName WHERE $where";
+        $stm = $this->conn->prepare($query);
+        $stm->execute();
+    }
+
+    public function clear($tableName)
+    {
+        $query = "DELETE FROM $tableName";
+        $stm = $this->conn->prepare($query);
+        $stm->execute();
+    }
+
+    public function update($tableName,$value)
+    {
+
+    }
+
+
 }

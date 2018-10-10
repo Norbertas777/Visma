@@ -1,19 +1,12 @@
 <?php
-//
-//use Hyphenation_App_OOP\Classes\Side_Functions\Database;
+
+use Classes\Side_Functions\Database;
+use Classes\Side_Functions\DatabaseQ;
 use Classes\Side_Functions\Timer;
 use Classes\Side_Functions\Cache;
 use Classes\Side_Functions\Logger;
 use Classes\Algorithm\PatternDataToArray;
 use Classes\Algorithm\Hyphenation;
-
-
-//include ('Classes/Side_Functions/Database.php');
-//include('Classes/Side_Functions/Timer.php');
-//include('Psr/Log/AbstractLogger.php');
-//include('Classes/Side_Functions/Logger.php');
-//include('Classes/Algorithm/PatternDataToArray.php');
-//include('Classes/Algorithm/Hyphenation.php');
 
 spl_autoload_register(function ($class) {
 
@@ -29,18 +22,14 @@ spl_autoload_register(function ($class) {
 });
 
 
-//$connection = new Database();
 switch ($argv[1]) {
 
     case "-file":
 
         $time = new Timer();
-
         $cache = new Cache('Cache.txt');
-
         $patternList = new PatternDataToArray();
         $wordToTestList = new PatternDataToArray();
-
         $wordToHyphen = new Hyphenation();
         $hyphenateTheWord = new Hyphenation();
         $hyphenateManyWords = new Hyphenation();
@@ -68,23 +57,48 @@ switch ($argv[1]) {
                     $cache->set($word, $hyphenateTheWord->echoHyphenatedWord($word, $patternList->getPatternData()));
 
                 }
-                $time->printRunningDuration();
 
             }
         }
+        $time->printRunningDuration();
         break;
 
+    case "-insertPatternDataToDb":
+
+        $connection = new Database();
+        $patternList = new PatternDataToArray();
+        $wordToTestList = new PatternDataToArray();
+
+        $patternList->setPatternFileLocation('Resources/pattern_data.txt');
+        $patternList->getPatternData();
+        $wordToTestList->setWordsToTestFileLocation('Resources/words.txt');
+        $wordToTestList->getWordsToTestData();
+
+        $connection->insert('pattern_table','pattern',$patternList->getPatternData());
+
+        break;
+
+    case "-insertWordsDataToDb":
+
+        $connection = new Database();
+        $patternList = new PatternDataToArray();
+        $wordToTestList = new PatternDataToArray();
+
+        $patternList->setPatternFileLocation('Resources/pattern_data.txt');
+        $patternList->getPatternData();
+        $wordToTestList->setWordsToTestFileLocation('Resources/words.txt');
+        $wordToTestList->getWordsToTestData();
+
+        $connection->insert('words_table','word', $wordToTestList->getWordsToTestData());
+
+        break;
 
     case "-word":
 
         $time = new Timer();
-
         $cache = new Cache('Cache.txt');
-
         $log = new Logger();
-
         $patternList = new PatternDataToArray();
-
         $wordToHyphen = new Hyphenation();
         $hyphenateTheWord = new Hyphenation();
 
@@ -115,6 +129,52 @@ switch ($argv[1]) {
 
         break;
 
+    case "-dbWord":
 
+        $connection = new Database();
+        $query = new DatabaseQ();
+        $wordToHyphen = new Hyphenation();
+        $hyphenateTheWord = new Hyphenation();
+
+        $wordToHyphen->setWordToHyphenate();
+        $wordToHyphen->getWordToHyphenate();
+        $patternArrDB = $connection->select('*','pattern_table');
+        $patternArr = $query->getPatternData($patternArrDB);
+        $wordsArrDB = $connection->select('*','words_table');
+        $wordsArr = $query->getWordsData($wordsArrDB);
+        $hyphenatedArrDB = $connection->select('*','hyphenated_words_table');
+        $hyphenatedArr = $query->getHyphenatedWordsData($hyphenatedArrDB);
+      
+
+        $wordToInsert = $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternArr);
+        $checkIfExist = $connection->selectWhere('*','hyphenated_words_table','hyphenated_word',$wordToInsert);
+
+
+
+         if(empty($checkIfExist))  {
+
+              $connection->insert('hyphenated_words_table', 'hyphenated_word', $wordToInsert);
+              echo "Hyphenated word inserted with success! \n";
+
+            }  else {
+
+              echo "Word: " . $wordToHyphen->getWordToHyphenate() . " was already hyphenated and inserted to database!";
+            }
+
+//        $connection->select('hyphenated_word','hyphenated_words_table');
+//        $connection->insert('hyphenated_words_table', 'hyphenated_word', $wordToInsert);
+
+//        foreach($wordsArr as $word) {
+//
+//            $wordToInsert = $hyphenateTheWord->echoHyphenatedWord($word, $patternArr);
+//            $connection->insert('hyphenated_words_table', 'hyphenated_word', $wordToInsert);        // insert many words
+//        }
+
+          echo  "\n".$wordToInsert."\n";
+
+         $matches=$hyphenateTheWord->getPatternMatches($wordToHyphen->getWordToHyphenate() ,$patternArr);
+
+         echo "Patterns that match the word entered: " . implode(" ",$matches);
+        break;
 }
 

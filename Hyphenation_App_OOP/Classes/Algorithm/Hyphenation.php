@@ -137,5 +137,20 @@ class Hyphenation extends PatternDataToArray
         }
 
     }
+
+    public function getPatternMatches($enteredWord, $wordFragments) {
+
+        $wordWithDots = '.' . $enteredWord . '.';
+        $matchesArr = array_fill(0,strlen($enteredWord)+1,null);
+        foreach ($wordFragments as $fragment){
+            $position = strpos($wordWithDots, preg_replace("/[0-9]/", "", $fragment));
+            if ($position >= 0 && $position !== false)
+            {
+                $matchesArr[$position] = $fragment;
+            }
+        }
+        return $matchesArr;
+    }
+
 }
 
