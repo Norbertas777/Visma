@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: norbertas
- * Date: 18.10.7
- * Time: 16.10
- */
-//
-//
+
 namespace Classes\Algorithm;
 
 class Hyphenation extends PatternDataToArray
@@ -16,35 +9,25 @@ class Hyphenation extends PatternDataToArray
     public $wordToHyphenate;
     public $wordToHyphenateDots;
 
-
     public function setPatternToLettersOnly($pattern)
     {
-
         $this->patternWithLettersOnly = preg_replace('/[^A-Za-z.]/', '', $pattern);
-
-
     }
 
     public function getPatternToLettersOnly()
     {
-
         return $this->patternWithLettersOnly;
-
-
     }
 
     public function setWordToHyphenate()
     {
         $wordEntered[] = readline("Enter your word to hyphenate:");
         $this->wordToHyphenate = implode("", $wordEntered);
-
     }
 
     public function getWordToHyphenate()
     {
-
         return $this->wordToHyphenate;
-
     }
 
 
@@ -60,18 +43,14 @@ class Hyphenation extends PatternDataToArray
             if ($word_num_arr[$i] & 1) {
 
                 $str .= '-';
-
             }
-
             $word_key++;
         }
-
         return $str;
     }
 
     public function echoHyphenatedWord($wordToHyphenate, $pattern_arr)
     {
-
         $word_to_analyze = $this->prepareWordForAnalyze($wordToHyphenate);
         $word_num_arrr = $this->parseWordNums($word_to_analyze, $pattern_arr);
 
@@ -80,7 +59,6 @@ class Hyphenation extends PatternDataToArray
 
     public function parseWordNums($word_to_analyze, $pattern_arr)
     {
-
         $word_length = strlen($word_to_analyze);
         $word_num_arr = array_fill(0, $word_length, null);
 
@@ -90,9 +68,7 @@ class Hyphenation extends PatternDataToArray
             $pattern_begin_pos = strpos($word_to_analyze, $plain_pattern);
 
             if ($pattern_begin_pos === false) {
-
                 continue;
-
             } else {
 
                 $pattern_key = 0;
@@ -138,14 +114,14 @@ class Hyphenation extends PatternDataToArray
 
     }
 
-    public function getPatternMatches($enteredWord, $wordFragments) {
+    public function getPatternMatches($enteredWord, $wordFragments)
+    {
 
         $wordWithDots = '.' . $enteredWord . '.';
-        $matchesArr = array_fill(0,strlen($enteredWord)+1,null);
-        foreach ($wordFragments as $fragment){
+        $matchesArr = array_fill(0, strlen($enteredWord) + 1, null);
+        foreach ($wordFragments as $fragment) {
             $position = strpos($wordWithDots, preg_replace("/[0-9]/", "", $fragment));
-            if ($position >= 0 && $position !== false)
-            {
+            if ($position >= 0 && $position !== false) {
                 $matchesArr[$position] = $fragment;
             }
         }

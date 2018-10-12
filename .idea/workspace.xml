@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49295913-cc68-421f-ad46-c9383aebb6e1" name="Default Changelist" comment="Refactor">
-      <change afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4e461878-9ff9-4265-9efc-32f824f25fc3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4e461878-9ff9-4265-9efc-32f824f25fc3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/App.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/Hyphenation.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/Hyphenation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/Config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hyphenation_App_OOP/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/uploadPatternToDB.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hyphenation_App_OOP/uploadWordsToDB.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,50 +55,51 @@
     <session id="-395158987">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cache" value="1" />
           <entry key="hyphenated_words" value="7" />
-          <entry key="hyphenated_words_table" value="9" />
+          <entry key="hyphenated_words_table" value="11" />
           <entry key="log" value="1" />
-          <entry key="pattern_table" value="29" />
-          <entry key="php" value="122" />
+          <entry key="pattern_table" value="36" />
+          <entry key="php" value="133" />
           <entry key="sql" value="3" />
-          <entry key="txt" value="52" />
-          <entry key="words_table" value="15" />
+          <entry key="txt" value="53" />
+          <entry key="words_table" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="60" />
-          <entry key="PHP" value="121" />
-          <entry key="PLAIN_TEXT" value="54" />
+          <entry key="Database Element" value="70" />
+          <entry key="PHP" value="132" />
+          <entry key="PLAIN_TEXT" value="55" />
           <entry key="Scratch" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="25" />
-          <entry key="php" value="16956" />
+          <entry key="php" value="19743" />
           <entry key="sql" value="35" />
           <entry key="txt" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="16911" />
+          <entry key="PHP" value="19698" />
           <entry key="PLAIN_TEXT" value="69" />
           <entry key="SQL" value="35" />
           <entry key="Scratch" value="45" />
@@ -101,7 +107,7 @@
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
         <counts>
-          <entry key="PHP Class.type" value="8" />
+          <entry key="PHP Class.type" value="9" />
         </counts>
       </usages-collector>
     </session>
@@ -111,41 +117,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="177" column="109" lean-forward="true" selection-start-line="177" selection-start-column="109" selection-end-line="177" selection-end-column="109" />
-              <folding>
-                <element signature="e#9#45#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Database.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="80" column="5" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
-              <folding>
-                <element signature="e#126#134#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseQ.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/Hyphenation.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="150" column="9" lean-forward="true" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
+            <state relative-caret-position="360">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -157,6 +130,7 @@
       <find>mis</find>
       <find>$positions</find>
       <find>mis-trans-late</find>
+      <find>where</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,11 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Classes/dataToArray.php" />
-        <option value="$PROJECT_DIR$/Classes/patternArrayManipulation.php" />
-        <option value="$PROJECT_DIR$/Classes/testtt.php" />
-        <option value="$PROJECT_DIR$/Classes/app.php" />
-        <option value="$PROJECT_DIR$/Classes/DataToArray.php" />
         <option value="$PROJECT_DIR$/Classes/PatternDataToArray.php" />
         <option value="$PROJECT_DIR$/../datamanipulation-master/SyllabificateFromFile.php" />
         <option value="$PROJECT_DIR$/app.php" />
@@ -196,7 +165,6 @@
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/uploadWordsToDB.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/dbCongif.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Timer.php" />
-        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Psr/Log/LoggerAwareInterface.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Psr/Log/InvalidArgumentException.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Psr/Log/LoggerAwareTrait.php" />
@@ -217,9 +185,15 @@
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/uploadPatternToDB.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Config.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseQ.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/api/main.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/api/read.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Autoload.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/App.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/Hyphenation.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseInterface.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Database.php" />
-        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/Hyphenation.php" />
+        <option value="$PROJECT_DIR$/Hyphenation_App_OOP/api.php" />
         <option value="$PROJECT_DIR$/Hyphenation_App_OOP/main.php" />
       </list>
     </option>
@@ -232,10 +206,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2007" />
-    <option name="y" value="81" />
-    <option name="width" value="1833" />
-    <option name="height" value="789" />
+    <option name="x" value="1987" />
+    <option name="y" value="25" />
+    <option name="width" value="1853" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -245,6 +219,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="Hyphenation" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -274,25 +259,21 @@
               <item name="Hyphenation" type="b2602c69:ProjectViewProjectNode" />
               <item name="uzduotis1" type="462c0819:PsiDirectoryNode" />
               <item name="Hyphenation_App_OOP" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
-              <item name="Side_Functions" type="462c0819:PsiDirectoryNode" />
+              <item name="Psr" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Hyphenation" type="b2602c69:ProjectViewProjectNode" />
               <item name="uzduotis1" type="462c0819:PsiDirectoryNode" />
               <item name="Hyphenation_App_OOP" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Psr" type="462c0819:PsiDirectoryNode" />
+              <item name="Log" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
             <path>
-              <item name="Hyphenation" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Hyphenation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uzduotis1" type="462c0819:PsiDirectoryNode" />
+              <item name="Hyphenation_App_OOP" type="462c0819:PsiDirectoryNode" />
+              <item name="Psr" type="462c0819:PsiDirectoryNode" />
+              <item name="SimpleCache" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -337,20 +318,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHP Script.uploadPatternToDB.php">
+  <component name="RunManager" selected="PHP Script.api.php">
     <configuration name="Hyphenation_App.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/old/Hyphenation_App.php">
       <method v="2" />
     </configuration>
-    <configuration name="PatternDataToArray.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php">
+    <configuration name="api.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Hyphenation_App_OOP/api.php">
       <method v="2" />
     </configuration>
     <configuration name="main.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Hyphenation_App_OOP/main.php">
       <method v="2" />
     </configuration>
-    <configuration name="scratch.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$APPLICATION_CONFIG_DIR$/scratches/scratch.php">
+    <configuration name="read.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Hyphenation_App_OOP/api/read.php">
       <method v="2" />
     </configuration>
-    <configuration name="test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Hyphenation_App_OOP/Classes/test.php">
+    <configuration name="scratch.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$APPLICATION_CONFIG_DIR$/scratches/scratch.php">
       <method v="2" />
     </configuration>
     <configuration name="uploadPatternToDB.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Hyphenation_App_OOP/uploadPatternToDB.php">
@@ -358,19 +339,19 @@
     </configuration>
     <list>
       <item itemvalue="PHP Script.scratch.php" />
-      <item itemvalue="PHP Script.test.php" />
       <item itemvalue="PHP Script.main.php" />
-      <item itemvalue="PHP Script.PatternDataToArray.php" />
       <item itemvalue="PHP Script.Hyphenation_App.php" />
       <item itemvalue="PHP Script.uploadPatternToDB.php" />
+      <item itemvalue="PHP Script.read.php" />
+      <item itemvalue="PHP Script.api.php" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.uploadPatternToDB.php" />
+        <item itemvalue="PHP Script.api.php" />
+        <item itemvalue="PHP Script.read.php" />
         <item itemvalue="PHP Script.main.php" />
+        <item itemvalue="PHP Script.uploadPatternToDB.php" />
         <item itemvalue="PHP Script.Hyphenation_App.php" />
-        <item itemvalue="PHP Script.PatternDataToArray.php" />
-        <item itemvalue="PHP Script.test.php" />
       </list>
     </recent_temporary>
   </component>
@@ -397,12 +378,13 @@
       <workItem from="1538720830958" duration="23673000" />
       <workItem from="1538932685664" duration="24628000" />
       <workItem from="1539066518583" duration="26497000" />
-      <workItem from="1539153339042" duration="25945000" />
+      <workItem from="1539153339042" duration="26130000" />
+      <workItem from="1539249695889" duration="26241000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206585000" />
+    <option name="totallyTimeSpent" value="233011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -415,8 +397,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1987" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1444383" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14609851" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -429,7 +412,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24756756" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24756756" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32972974" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -470,10 +453,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.php" />
-    <entry file="file://$PROJECT_DIR$/Classes/output.php" />
-    <entry file="file://$PROJECT_DIR$/Classes/test.php" />
-    <entry file="file://$PROJECT_DIR$/Classes/testtt.php" />
     <entry file="file://$PROJECT_DIR$/old/words.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -606,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Logger.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="30" column="37" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/log.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -630,13 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/uploadPatternToDB.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -646,13 +611,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Resources/pattern_data.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Cache.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1275">
-          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
     </entry>
     <entry file="das://4e461878-9ff9-4265-9efc-32f824f25fc3/schema/hyphenation/table/hyphenated_words">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -668,38 +626,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://4e461878-9ff9-4265-9efc-32f824f25fc3/schema/hyphenation/table/words_table">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://4e461878-9ff9-4265-9efc-32f824f25fc3/schema/hyphenation/table/pattern_table">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseQ.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -710,13 +640,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Database.php">
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/api/main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="80" column="5" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/api/read.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
-            <element signature="e#126#134#0#PHP" expanded="true" />
+            <element signature="e#8#44#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseQ.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e461878-9ff9-4265-9efc-32f824f25fc3/schema/hyphenation/table/pattern_table">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e461878-9ff9-4265-9efc-32f824f25fc3/schema/hyphenation/table/words_table">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -727,20 +685,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/PatternDataToArray.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Algorithm/Hyphenation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="150" column="9" lean-forward="true" selection-start-line="150" selection-start-column="9" selection-end-line="150" selection-end-column="9" />
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/DatabaseInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Logger.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="111" column="1" selection-end-line="111" selection-end-column="1" />
+          <folding>
+            <element signature="e#125#133#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Cache.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="11" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/Autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/Classes/Side_Functions/App.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2580">
+          <caret line="177" column="1" lean-forward="true" selection-start-line="177" selection-start-column="1" selection-end-line="177" selection-end-column="1" />
+          <folding>
+            <element signature="e#126#162#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Hyphenation_App_OOP/main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="177" column="109" lean-forward="true" selection-start-line="177" selection-start-column="109" selection-end-line="177" selection-end-column="109" />
-          <folding>
-            <element signature="e#9#45#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
