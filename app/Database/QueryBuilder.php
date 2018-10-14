@@ -46,7 +46,7 @@ class QueryBuilder implements DatabaseInterface
     public function select($selectWhat = "*", $tableName, $par = null)
     {
         $query = "SELECT $selectWhat FROM $tableName $par";
-      return  $this->executeQuery($query);
+        return  $this->executeQuery($query);
     }
 
     public function selectWhere($selectWhat = "*", $tableName, $where, $what, $par = null)

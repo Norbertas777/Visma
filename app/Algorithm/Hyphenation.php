@@ -1,47 +1,17 @@
 <?php
 
-    namespace App\Algorithm;
+namespace App\Algorithm;
 
-class Hyphenation extends PatternDataToArray
+class Hyphenation
 {
-
-    public $patternWithLettersOnly;
-    public $wordToHyphenate;
-    public $wordToHyphenateDots;
-
-    public function setPatternToLettersOnly($pattern)
-    {
-        $this->patternWithLettersOnly = preg_replace('/[^A-Za-z.]/', '', $pattern);
-    }
-
-    public function getPatternToLettersOnly()
-    {
-        return $this->patternWithLettersOnly;
-    }
-
-    public function setWordToHyphenate()
-    {
-        $wordEntered[] = readline("Enter your word to hyphenate:");
-        $this->wordToHyphenate = implode("", $wordEntered);
-    }
-
-    public function getWordToHyphenate()
-    {
-        return $this->wordToHyphenate;
-    }
-
-
     public function getHyphenatedWord($word_num_arr, $word_to_analyze)
     {
         $str = '';
         $word_key = 1;
 
-        for ($i = 1; $i < count($word_num_arr) - 1; $i++) {
-
+        foreach ($word_num_arr as $iValue) {
             $str .= $word_to_analyze[$word_key];
-
-            if ($word_num_arr[$i] & 1) {
-
+            if ($iValue & 1) {
                 $str .= '-';
             }
             $word_key++;
@@ -70,10 +40,9 @@ class Hyphenation extends PatternDataToArray
             if ($pattern_begin_pos === false) {
                 continue;
             }
-
             $pattern_key = 0;
 
-            for ($i = 0, $iMax = strlen($pattern); $i < $iMax; $i++) {
+            foreach ($pattern as $i => $iValue) {
 
                 if (!is_numeric($pattern[$i])) {
                     $pattern_key++;
@@ -91,26 +60,13 @@ class Hyphenation extends PatternDataToArray
             }
         }
 
-
         return $word_num_arr;
     }
 
 
     public function prepareWordForAnalyze($wordToHyphenate)
     {
-        $this->wordToHyphenateDots = '.' . $wordToHyphenate . '.';
-
-        return $this->wordToHyphenateDots;
-    }
-
-    public function echoManyHyphenatedWords($words_arr , $pattern_arr)
-    {
-
-        foreach ($words_arr as $word) {
-
-            return $this->echoHyphenatedWord($word, $pattern_arr) . "\n";
-        }
-
+        return '.' . $wordToHyphenate . '.';
     }
 
     public function getPatternMatches($enteredWord, $wordFragments)

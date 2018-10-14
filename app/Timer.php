@@ -18,9 +18,4 @@ class Timer
         $duration = $timeEnd - $this->startTime;
         return "\nExecuted in " . $duration . " seconds." . "\n";
     }
-
-    public function printRunningDuration()
-    {
-        echo $this->getRunningDuration();
-    }
 }

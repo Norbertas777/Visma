@@ -4,7 +4,6 @@ namespace App;
 
 use App\Traits\Actions;
 
-
 class App
 {
     protected static $registry = [];
@@ -24,11 +23,10 @@ class App
         return static::$registry[$key];
     }
 
-    public function runApp($toDo)
+    public function runApp($argv)
     {
-        switch ($toDo) {
-
-            case "file":
+        switch ($argv[1]) {
+            case 0:
                 $this->file();
                 break;
             case "insertPatternDataToDb":
@@ -37,13 +35,12 @@ class App
             case "insertWordsDataToDb":
                 $this->insertWordsToDb();
                 break;
-            case "word":
-                $this->word();
+            case 3:
+                $this->word($argv[2]);
                 break;
-            case "dbWord":
-                $this->dbWord();
+            case 4:
+                $this->dbWord($argv[2]);
                 break;
         }
     }
-
 }

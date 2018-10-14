@@ -10,9 +10,11 @@ class Connection
 
     public static function make($config)
     {
-        return $config['driver'];
+        if (getenv('IS_DB_USED') === 'false') {
+            return;
+        }
         try {
-            if($config['driver'] === 'sqlite'){
+            if(isset($config['driver']) && $config['driver'] === 'sqlite'){
                 return new PDO(
                     'sqlite:' .__DIR__.'/../../database/local.sqlite'
                 );
