@@ -1,0 +1,18 @@
+{
+  "description": "Norbos projektas.",
+  "license": "MIT",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": "^7.2.0",
+    "psr/log": "^1.0",
+    "psr/simple-cache": "^1.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  }
+}
