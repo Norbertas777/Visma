@@ -1,10 +1,10 @@
 <?php
 
 use App\App;
-use App\Database\Connection;
-use App\Database\QueryBuilder;
-require __DIR__.'/../vendor/autoload.php';
-$dotenv = new Dotenv\Dotenv(__DIR__. '/..');
+use App\Database\{Connection, QueryBuilder};
+
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/..');
 $dotenv->load();
 
 App::bind('config', $config = require 'config.php');

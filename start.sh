@@ -16,17 +16,17 @@ pause(){
 
 text(){
 	echo "parsing text files"
-	php ./index.php 0
+	php ./cli.php 0
     pause
 }
 word(){
 	read -p "Enter the word you would like to hyphenate : " arg1
-      php ./index.php 3 $arg1
+      php ./cli.php 3 $arg1
     pause
 }
 db_word(){
 	read -p "Enter the word you would like to hyphenate : " arg1
-      php ./index.php 4 $arg1
+      php ./cli.php 4 $arg1
     pause
 }
 
