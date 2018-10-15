@@ -11,3 +11,6 @@ $localhost = 'localhost';
 $database = 'hyphenation';
 $user = 'root';
 $password = 'password';
+
+
+//TODO grazinti objekta

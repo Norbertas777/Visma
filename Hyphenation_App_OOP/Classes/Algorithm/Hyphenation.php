@@ -4,7 +4,7 @@ namespace Classes\Algorithm;
 
 class Hyphenation extends PatternDataToArray
 {
-
+    //TODO Parametru scopai private/protected
     public $patternWithLettersOnly;
     public $wordToHyphenate;
     public $wordToHyphenateDots;
@@ -19,9 +19,12 @@ class Hyphenation extends PatternDataToArray
         return $this->patternWithLettersOnly;
     }
 
+
+    // TODO
     public function setWordToHyphenate()
     {
         $wordEntered[] = readline("Enter your word to hyphenate:");
+
         $this->wordToHyphenate = implode("", $wordEntered);
     }
 
@@ -106,12 +109,10 @@ class Hyphenation extends PatternDataToArray
 
     public function echoManyHyphenatedWords($words_arr, $pattern_arr)
     {
-
         foreach ($words_arr as $word) {
 
             return $this->echoHyphenatedWord($word, $pattern_arr) . "\n";
         }
-
     }
 
     public function getPatternMatches($enteredWord, $wordFragments)
@@ -119,6 +120,7 @@ class Hyphenation extends PatternDataToArray
 
         $wordWithDots = '.' . $enteredWord . '.';
         $matchesArr = array_fill(0, strlen($enteredWord) + 1, null);
+
         foreach ($wordFragments as $fragment) {
             $position = strpos($wordWithDots, preg_replace("/[0-9]/", "", $fragment));
             if ($position >= 0 && $position !== false) {

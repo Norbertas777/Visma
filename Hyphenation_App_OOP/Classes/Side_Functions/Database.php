@@ -14,7 +14,7 @@ use PDOException;
 class Database implements DatabaseInterface
 {
 
-    private $conn;
+    protected $conn;
 
     public function __construct()
     {
@@ -33,10 +33,6 @@ class Database implements DatabaseInterface
         $this->conn = null;
     }
 
-    public function connect()
-    {
-        return $this->conn;
-    }
 
     public function insertMany($tableName, $tableRowName, $dataToInstert)
     {
@@ -110,3 +106,4 @@ class Database implements DatabaseInterface
         $stm->execute();
     }
 }
+//TODO isivalyti nenaudojamus metodus

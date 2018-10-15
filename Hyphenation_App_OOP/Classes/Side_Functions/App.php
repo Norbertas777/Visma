@@ -176,3 +176,6 @@ class App
     }
 
 }
+
+//TODO  iskaidyti
+// TODO isivalyti nenaudojamus
