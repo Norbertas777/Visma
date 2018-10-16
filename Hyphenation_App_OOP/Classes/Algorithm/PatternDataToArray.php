@@ -10,18 +10,13 @@ namespace Classes\Algorithm;
 
 class PatternDataToArray
 {
-    public $patternArray;
-    public $wordsToTestArray;
+    protected $patternArray;
+    protected $wordsToTestArray;
 
-
-    public function setPatternFileLocation($location)
+    public function __construct()
     {
-        $this->patternArray = explode("\n", file_get_contents($location));
-    }
-
-    public function setWordsToTestFileLocation($location)
-    {
-        $this->wordsToTestArray = explode("\n", file_get_contents($location));
+        $this->patternArray = explode("\n", file_get_contents('Resources/pattern_data.txt'));
+        $this->wordsToTestArray = explode("\n", file_get_contents('Resources/words.txt'));
     }
 
     public function getPatternData()

@@ -66,3 +66,59 @@ Executed in 12.377678871155 seconds.
 Word to hyphenate: lol 
 Hyphenated word: lol
 Executed in 7.1386249065399 seconds.
+
+Word to hyphenate: asdasda 
+Hyphenated word: as-das-da
+Executed in 16.881855964661 seconds.
+
+Word to hyphenate:  
+Hyphenated word: 
+Executed in 8.4997129440308 seconds.
+
+Word to hyphenate:  
+Hyphenated word: 
+Executed in 5.0537989139557 seconds.
+
+Word to hyphenate:  
+Hyphenated word: 
+Executed in 3.479484796524 seconds.
+
+Word to hyphenate:  
+Hyphenated word: 
+Executed in 3.043135881424 seconds.
+
+Word to hyphenate: asdasd 
+Hyphenated word: as-dasd
+Executed in 7.1966638565063 seconds.
+
+Word to hyphenate: Mistranslate 
+Hyphenated word: Mis-trans-late
+Executed in 6.23406291008 seconds.
+
+Word to hyphenate: norbertas 
+Hyphenated word: nor-ber-tas
+Executed in 1.8956789970398 seconds.
+
+Word to hyphenate: vainius 
+Hyphenated word: vainius
+Executed in 3.0962998867035 seconds.
+
+Word to hyphenate: grigalius 
+Hyphenated word: gri-gal-ius
+Executed in 2.0303330421448 seconds.
+
+Word to hyphenate: ferrari 
+Hyphenated word: fer-rar-i
+Executed in 5.08442902565 seconds.
+
+Word to hyphenate: violeta 
+Hyphenated word: vi-o-le-ta
+Executed in 7.1139121055603 seconds.
+
+Word to hyphenate: kompiuterastas 
+Hyphenated word: kom-pi-uteras-tas
+Executed in 4.3704001903534 seconds.
+
+Word to hyphenate: akrobatas 
+Hyphenated word: akro-batas
+Executed in 11.582471132278 seconds.

@@ -4,23 +4,22 @@ namespace Classes\Algorithm;
 
 class Hyphenation extends PatternDataToArray
 {
-    //TODO Parametru scopai private/protected
-    public $patternWithLettersOnly;
-    public $wordToHyphenate;
-    public $wordToHyphenateDots;
 
-    public function setPatternToLettersOnly($pattern)
+    private $patternWithLettersOnly;
+    private $wordToHyphenate;
+    private $wordToHyphenateDots;
+
+    protected function setPatternToLettersOnly($pattern)
     {
         $this->patternWithLettersOnly = preg_replace('/[^A-Za-z.]/', '', $pattern);
     }
 
-    public function getPatternToLettersOnly()
+    protected function getPatternToLettersOnly()
     {
         return $this->patternWithLettersOnly;
     }
 
 
-    // TODO
     public function setWordToHyphenate()
     {
         $wordEntered[] = readline("Enter your word to hyphenate:");
@@ -34,16 +33,16 @@ class Hyphenation extends PatternDataToArray
     }
 
 
-    public function getHyphenatedWord($word_num_arr, $word_to_analyze)
+    protected function getHyphenatedWord($wordNumArr, $wordToAnalyze)
     {
         $str = '';
         $word_key = 1;
 
-        for ($i = 1; $i < count($word_num_arr) - 1; $i++) {
+        for ($i = 1; $i < count($wordNumArr) - 1; $i++) {
 
-            $str .= $word_to_analyze[$word_key];
+            $str .= $wordToAnalyze[$word_key];
 
-            if ($word_num_arr[$i] & 1) {
+            if ($wordNumArr[$i] & 1) {
 
                 $str .= '-';
             }
@@ -52,43 +51,43 @@ class Hyphenation extends PatternDataToArray
         return $str;
     }
 
-    public function echoHyphenatedWord($wordToHyphenate, $pattern_arr)
+    public function echoHyphenatedWord($wordToHyphenate, $patternArr)
     {
-        $word_to_analyze = $this->prepareWordForAnalyze($wordToHyphenate);
-        $word_num_arrr = $this->parseWordNums($word_to_analyze, $pattern_arr);
+        $wordToAnalyze = $this->prepareWordForAnalyze($wordToHyphenate);
+        $wordNumArray = $this->parseWordNums($wordToAnalyze, $patternArr);
 
-        return $this->getHyphenatedWord($word_num_arrr, $word_to_analyze);
+        return $this->getHyphenatedWord($wordNumArray, $wordToAnalyze);
     }
 
-    public function parseWordNums($word_to_analyze, $pattern_arr)
+    protected function parseWordNums($wordToAnalyze, $patternArr)
     {
-        $word_length = strlen($word_to_analyze);
-        $word_num_arr = array_fill(0, $word_length, null);
+        $wordLength = strlen($wordToAnalyze);
+        $wordNumArr = array_fill(0, $wordLength, null);
 
-        foreach ($pattern_arr as $pattern) {
+        foreach ($patternArr as $pattern) {
 
-            $plain_pattern = preg_replace('/[^A-Za-z.]/', '', $pattern);
-            $pattern_begin_pos = strpos($word_to_analyze, $plain_pattern);
+            $plainPattern = preg_replace('/[^A-Za-z.]/', '', $pattern);
+            $patternBeginPos = strpos($wordToAnalyze, $plainPattern);
 
-            if ($pattern_begin_pos === false) {
+            if ($patternBeginPos === false) {
                 continue;
             } else {
 
-                $pattern_key = 0;
+                $patternKey = 0;
 
                 for ($i = 0; $i < strlen($pattern); $i++) {
 
                     if (!is_numeric($pattern[$i])) {
-                        $pattern_key++;
+                        $patternKey++;
                     } else {
-                        $key = $pattern_begin_pos + $pattern_key - 1;
+                        $key = $patternBeginPos + $patternKey - 1;
 
-                        if ($word_num_arr[$key] === null) {
-                            $word_num_arr[$key] = (int)$pattern[$i];
+                        if ($wordNumArr[$key] === null) {
+                            $wordNumArr[$key] = (int)$pattern[$i];
                         } else {
-                            $word_num_arr[$key] = (int)$pattern[$i] > (int)$word_num_arr[$key]
+                            $wordNumArr[$key] = (int)$pattern[$i] > (int)$wordNumArr[$key]
                                 ? (int)$pattern[$i]
-                                : (int)$word_num_arr[$key];
+                                : (int)$wordNumArr[$key];
                         }
                     }
                 }
@@ -96,22 +95,22 @@ class Hyphenation extends PatternDataToArray
         }
 
 
-        return $word_num_arr;
+        return $wordNumArr;
     }
 
 
-    public function prepareWordForAnalyze($wordToHyphenate)
+    protected function prepareWordForAnalyze($wordToHyphenate)
     {
         $this->wordToHyphenateDots = '.' . $wordToHyphenate . '.';
 
         return $this->wordToHyphenateDots;
     }
 
-    public function echoManyHyphenatedWords($words_arr, $pattern_arr)
+    public function echoManyHyphenatedWords($wordNumArr, $patternArr)
     {
-        foreach ($words_arr as $word) {
+        foreach ($wordNumArr as $word) {
 
-            return $this->echoHyphenatedWord($word, $pattern_arr) . "\n";
+            return $this->echoHyphenatedWord($word, $patternArr) . "\n";
         }
     }
 

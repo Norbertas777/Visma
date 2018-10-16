@@ -3,7 +3,9 @@
 use Classes\Side_Functions\App;
 
 
-include "Classes/Side_Functions/Autoload.php";
+include 'Classes/Side_Functions/Autoload.php';
+require_once __DIR__ . '/vendor/composer/autoload_real.php';
+require_once 'vendor/autoload.php';
 
 $welcomeMsg = "*****Welcome to Hyphenator*****\n\n
 Choose one of the following:\n\n
