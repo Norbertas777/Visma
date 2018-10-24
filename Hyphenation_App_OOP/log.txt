@@ -122,3 +122,7 @@ Executed in 4.3704001903534 seconds.
 Word to hyphenate: akrobatas 
 Hyphenated word: akro-batas
 Executed in 11.582471132278 seconds.
+
+Word to hyphenate: mistranslatetsdafs 
+Hyphenated word: mis-trans-latets-daf-s
+Executed in 3.1045401096344 seconds.

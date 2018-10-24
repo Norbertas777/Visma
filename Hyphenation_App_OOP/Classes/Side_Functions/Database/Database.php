@@ -11,16 +11,16 @@ namespace Classes\Side_Functions\Database;
 use PDO;
 use PDOException;
 
-class Database implements DatabaseInterface
+class Database
 {
 
     protected $conn;
 
     public function __construct()
     {
-        $db = require_once('Config.php');
+        $db = include('Config.php');
 
-        $localhost =$db->localhost;
+        $localhost = $db->localhost;
         $database = $db->database;
         $user = $db->user;
         $password = $db->password;
@@ -39,75 +39,24 @@ class Database implements DatabaseInterface
     }
 
 
-    public function insertMany($tableName, $tableRowName, $dataToInstert)
+    public function buildWithPrepare($queryString)
     {
-
-        foreach ($dataToInstert as $dataElement) {
-
-            $query = "INSERT INTO $tableName($tableRowName) VALUES (:pattern)";
-            $stm = $this->conn->prepare($query);
-            $stm->bindParam(':pattern', $dataElement);
-            $stm->execute();
-        }
-    }
-
-    public function insertIt($tableName, $tableRowName, $dataToInstert)
-    {
-        $query = "INSERT INTO $tableName($tableRowName) VALUES (:pattern)";
-        $stm = $this->conn->prepare($query);
-        $stm->bindParam(':pattern', $dataToInstert);
-        $stm->execute();
-
-    }
-
-    public function selectAll($selectWhat = "*", $tableName, $par = null)
-    {
-        $query = "SELECT $selectWhat FROM $tableName $par";
-        $stm = $this->conn->query($query)->fetchAll(PDO::FETCH_ASSOC);
-
-        return $stm;
-    }
-
-    public function selectIt($selectWhat = "*", $tableName, $par = null)
-    {
-        $query = "SELECT $selectWhat FROM $tableName $par";
-        $stm = $this->conn->prepare($query);
+        $stm = $this->conn->prepare($queryString);
         $stm->execute();
         return $stm;
     }
 
-    public function selectWhere($selectWhat = "*", $tableName, $where, $what, $par = null)
+    public function buildWithQuery($queryString)
     {
-        $query = "SELECT $selectWhat FROM $tableName WHERE $where='$what' $par";
-        $stm = $this->conn->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        $stm = $this->conn->query($queryString)->fetchAll(\PDO::FETCH_ASSOC);
         return $stm;
+
     }
 
-    public function deleteIt($tableName, $where)
+    public function buildWithFetch($queryString)
     {
-        $query = "DELETE FROM $tableName WHERE $where";
-        $stm = $this->conn->prepare($query);
-        $stm->execute();
-    }
+        $stm = $this->conn->query($queryString)->fetch(PDO::FETCH_BOTH);
+        return $stm;
 
-    public function deleteWhere($tableName, $where, $what)
-    {
-        $query = "DELETE FROM $tableName WHERE $where=$what";
-        $stm = $this->conn->prepare($query);
-        $stm->execute();
-    }
-
-    public function clear($tableName)
-    {
-        $query = "DELETE FROM $tableName";
-        $stm = $this->conn->prepare($query);
-        $stm->execute();
-    }
-
-    public function updateIt($tableName, $whatToChange, $value, $where, $what)
-    {
-        $query = "UPDATE $tableName SET $whatToChange='$value' WHERE $where=$what";
-        $stm = $this->conn->prepare($query);
-        $stm->execute();
     }
 }

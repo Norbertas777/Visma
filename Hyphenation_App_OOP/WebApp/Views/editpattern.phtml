@@ -1,0 +1,26 @@
+<br>
+
+<div class="col-md-12">
+    <h2>Update pattern:</h2>
+
+    <br>
+    <br>
+
+    <form action="" method="post">
+        <input name="id" type="hidden" value="<?php echo $selectAllArray[0]['id']; ?>">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="pattern">Pattern</label>
+                <input name="pattern" type="text" class="form-control" id="pattern"
+                       value="<?php echo $selectAllArray[0]['pattern']; ?>" required>
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Update">
+        </div>
+    </form>
+</div>

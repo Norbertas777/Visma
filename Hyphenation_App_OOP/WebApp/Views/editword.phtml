@@ -1,0 +1,26 @@
+<br>
+
+<div class="col-md-12">
+    <h2>Update word:</h2>
+
+    <br>
+    <br>
+
+    <form action="" method="post">
+        <input name="id" type="hidden" value="<?php echo $selectAllArray[0]['id']; ?>">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="word">Word</label>
+                <input name="word" type="text" class="form-control" id="word" value="<?php echo $selectAllArray[0]['word']; ?>"
+                       required>
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Update">
+        </div>
+    </form>
+</div>

@@ -10,6 +10,7 @@ namespace Classes\Side_Functions;
 
 use Classes\Algorithm\PatternDataProxy;
 use Classes\Side_Functions\Database\Database;
+use Classes\Side_Functions\Database\QueryBuilder;
 use Classes\Side_Functions\Database\DatabaseQ;
 use Classes\Side_Functions\Timer;
 use Classes\Side_Functions\Cache;
@@ -105,38 +106,66 @@ class App
 
     public function insertPatternDataToDB()
     {
+        $insert = new QueryBuilder();
         $connection = new Database();
         $patternList = new PatternDataToArray();
-        $wordToTestList = new PatternDataToArray();
 
         $patternList->getPatternData();
-        $wordToTestList->getWordsToTestData();
 
-        $connection->insertIt('pattern_table', 'pattern', $patternList->getPatternData());
+        $query = $insert->insert('pattern_table')
+            ->column('pattern')
+            ->values($patternList->getPatternData())
+            ->getString('insert');
+        $connection->buildWithPrepare($query);
     }
 
     public function runUsingDB()
     {
         $connection = new Database();
-        $query = new DatabaseQ();
+        $select = new QueryBuilder();
+        $select2 = new QueryBuilder();
+        $select3 = new QueryBuilder();
+        $select4 = new QueryBuilder();
+        $insert = new QueryBuilder();
+        $querry = new DatabaseQ();
         $wordToHyphen = new Hyphenation();
         $hyphenateTheWord = new Hyphenation();
 
         $wordToHyphen->setWordToHyphenate();
         $wordToHyphen->getWordToHyphenate();
-        $patternArrDB = $connection->selectIt('*', 'pattern_table');
-        $patternArr = $query->getPatternData($patternArrDB);
-        $wordsArrDB = $connection->selectIt('*', 'words_table');
-        $wordsArr = $query->getWordsData($wordsArrDB);
-        $hyphenatedArrDB = $connection->selectIt('*', 'hyphenated_words_table');
-        $hyphenatedArr = $query->getHyphenatedWordsData($hyphenatedArrDB);
+        $selectAllPatterns = $select->select(['*'])
+            ->from('pattern_table')
+            ->getString('select');
+        $patternArrDB = $connection->buildWithQuery($selectAllPatterns);
+        $patternArr = $querry->getPatternData($patternArrDB);
+        $selectAllWords = $select2->select(['*'])
+            ->from('words_table')
+            ->getString('select');
+        $wordsArrDB = $connection->buildWithQuery($selectAllWords);
+        $wordsArr = $querry->getWordsData($wordsArrDB);
+        $selectAllHyphenatedWords = $select3->select(['*'])
+            ->from('hyphenated_words_table')
+            ->getString('select');
+        $hyphenatedArrDB = $connection->buildWithQuery($selectAllHyphenatedWords);
+        $hyphenatedArr = $querry->getHyphenatedWordsData($hyphenatedArrDB);
 
-        $wordToInsert = $hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternArr);
-        $checkIfExist = $connection->selectWhere('*', 'hyphenated_words_table', 'hyphenated_word', $wordToInsert);
+        $wordToInsert = "'".$hyphenateTheWord->echoHyphenatedWord($wordToHyphen->getWordToHyphenate(), $patternArr)."'";
+        $selectWord =$select4->select(['*'])
+            ->from('hyphenated_words_table')
+            ->where('hyphenated_word')
+            ->what($wordToInsert)
+            ->getString('select');
+
+        $checkIfExist = $connection->buildWithQuery($selectWord);
 
         if (empty($checkIfExist)) {
 
-            $connection->insertIt('hyphenated_words_table', 'hyphenated_word', $wordToInsert);
+            $query = $insert->insert('hyphenated_words_table')
+                ->column('hyphenated_word')
+                ->values($wordToInsert)
+                ->getString('insert');
+            $connection->buildWithPrepare($query);
+
             echo "Hyphenated word inserted with success! \n";
 
         } else {
@@ -163,9 +192,7 @@ class App
         $time = new Timer();
         $cache = new Cache('Cache.txt');
         $log = new Logger();
-
         $patternList = new PatternDataProxy();
-
         $wordToHyphen = new Hyphenation();
         $hyphenateTheWord = new Hyphenation();
 
@@ -193,13 +220,16 @@ class App
     public function insertWordsDataToDB()
     {
         $connection = new Database();
-        $patternList = new PatternDataToArray();
+        $insert = new QueryBuilder();
         $wordToTestList = new PatternDataToArray();
 
-        $patternList->getPatternData();
         $wordToTestList->getWordsToTestData();
 
-        $connection->insertIt('words_table', 'word', $wordToTestList->getWordsToTestData());
+        $query = $insert->insert('Words_table')
+            ->column('word')
+            ->values($wordToTestList->getWordsToTestData())
+            ->getString('insert');
+        $connection->buildWithPrepare($query);
     }
 }
 

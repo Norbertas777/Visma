@@ -6,4 +6,3 @@ return (object) array (
    'password'  => 'password',
     'database'  => 'hyphenation'
 );
-
